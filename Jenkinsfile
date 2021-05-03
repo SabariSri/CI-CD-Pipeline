@@ -8,23 +8,26 @@ pipeline {
       }
     }
 
-    stage('Test') {
+    stage('Maven Staging') {
       parallel {
         stage('Compile') {
           steps {
             sh 'mvn compile'
+            withMaven(maven: 'maven3.8.1')
           }
         }
 
         stage('Test') {
           steps {
             sh 'mvn test'
+            withMaven(maven: 'maven3.8.1')
           }
         }
 
         stage('Package') {
           steps {
             sh 'mvn package'
+            withMaven(maven: 'maven3.8.1')
           }
         }
 
