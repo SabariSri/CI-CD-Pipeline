@@ -32,4 +32,7 @@ pipeline {
     }
 
   }
+  environment {
+    maven = 'maven3.8.1'
+  }
 }
