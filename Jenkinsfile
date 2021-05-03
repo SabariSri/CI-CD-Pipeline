@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git branch: 'main', credentialsId: 'b71466d5-515a-4721-9253-f0c6d3a97770', url: 'https://github.com/SabariSri/CI-CD-Pipeline'
+                git credentialsId: 'b71466d5-515a-4721-9253-f0c6d3a97770', url: 'https://github.com/SabariSri/CI-CD-Pipeline'
             }
         }
           stage('Test') {
