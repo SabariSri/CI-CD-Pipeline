@@ -1,11 +1,11 @@
-<h1> Hello, Welcome to CICD Sessions </h1>
-<h2> my first CICD pipeline</h2>
-<h3> Workin In EC2 </h3>
-<h1> modifying after cron job in git This will execute for every 2 min</h1>
-<h2>this is from my pipeline</h2>
-<h3>added deploy job change</h3>
-<h2>now using pipeline as code</h2>
-<h1> added Jenkins File</h1>
-<h2>Webhook added successfully</h2>
-<h2>pushed again</h2>
-<h1>all done</h1>
+<h1> Hello, welcome to CICD session </h1>
+<h2> My first CICD pipeline</h2>
+<h2> Working with EC2 instance </h2>
+<h2> Modifying after cron job in git This will execute for every 2 minutes</h2>
+<h2> This is from my pipeline</h2>
+<h2> Added deploy job change </h2>
+<h2> Now using Pipeline As Code</h2>
+<h2> Added Jenkins File</h2>
+<h2> Web-hook added successfully</h2>
+<h2> Pushed again</h2>
+<h1> --------- All done --------- </h1>
