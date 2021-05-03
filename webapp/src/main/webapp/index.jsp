@@ -1,7 +1,7 @@
 <h1> Hello, welcome to CICD session </h1>
 <h2> My first CICD pipeline</h2>
 <h2> Working with EC2 instance </h2>
-<h2> Source Code Listener - Jobs will get executed for every 1 seconds if changes available</h2>
+<h2> Source Code Listener - Jobs will get executed for every 1 second if changes available</h2>
 <h2> This is from my pipeline</h2>
 <h2> Added deploy job change </h2>
 <h2> Now using Pipeline As Code</h2>
