@@ -10,9 +10,6 @@ pipeline {
     stage('Stagging') {
       parallel {
         stage('Compile') {
-          environment {
-            maven = 'maven3.8.1'
-          }
           steps {
             sh 'mvn compile'
             withMaven(maven: 'maven3.8.1')
