@@ -7,5 +7,9 @@
 <h2> Now using Pipeline As Code</h2>
 <h2> Added Jenkins File</h2>
 <h2> Web-hook added successfully</h2>
+<h2> Created Blue Ocean jobs without errors</h2>
+<h2> Deployed .war into tomcat server via Blue Ocean job</h2>
+<h2> Created nexus uploader job separately and tested</h2>
+<h2> Completed configuring nexus binary upload along with tomcat deployment</h2>
 <h2> Pushed again</h2>
 <h1> --------- All done --------- </h1>

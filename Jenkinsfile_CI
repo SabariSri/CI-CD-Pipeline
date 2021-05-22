@@ -1,0 +1,45 @@
+pipeline {
+  agent any
+
+  tools {
+    maven 'maven3.8.1'
+  }
+
+  stages {
+    stage('Build') {
+      steps {
+        git credentialsId: 'b71466d5-515a-4721-9253-f0c6d3a97770', url: 'https://github.com/SabariSri/CI-CD-Pipeline'
+      }
+    }
+    stage('Test') {
+      steps {
+        sh 'mvn test'
+      }
+    }
+    stage('Package') {
+      steps {
+        sh 'mvn package'
+      }
+    }
+    stage('Results') {
+      steps {
+        junit '**/*.xml'
+        archiveArtifacts artifacts: '**/*.war', followSymlinks: false
+      }
+    }
+    stage('Nexus-Upload') {
+      steps {
+        nexusPublisher nexusInstanceId: 'nexus-on-epam-ubuntu', nexusRepositoryId: 'jenkins-ci-mvn-nexus-repo', packages: [
+          [$class: 'MavenPackage', mavenAssetList: [
+            [classifier: '', extension: '', filePath: 'webapp/target/webapp.war']
+          ], mavenCoordinate: [artifactId: 'webapp', groupId: 'com.company', packaging: 'war', version: '2.0']]
+        ]
+      }
+    }
+    stage('Deploy') {
+      steps {
+        deploy adapters: [tomcat9(credentialsId: 'c9d4b8ab-7ebf-456f-a634-bad11f78afaa', path: '', url: 'http://18.219.32.60:8090/')], contextPath: null, war: '**/*.war'
+      }
+    }
+  }
+}
