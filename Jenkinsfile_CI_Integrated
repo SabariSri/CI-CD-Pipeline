@@ -27,7 +27,7 @@ pipeline {
         archiveArtifacts artifacts: '**/*.war', followSymlinks: false
       }
     }
-    stage('Nexus-Upload') {
+    stage('Nexus-Download') {
       steps {
         sh 'wget --user=admin --password=Flubber45! http://10.245.128.179:8081/repository/jenkins-ci-mvn-nexus-repo/com/company/webapp/4.0/webapp-4.0.war'
       }
