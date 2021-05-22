@@ -23,7 +23,6 @@ pipeline {
         stage('Unit Test') {
           steps {
             withMaven(maven: 'maven3.8.1') {
-              sh 'mvn -Dtest=TestGreeter#greetShouldIncludeGreetingPhrase3 test -pl server'
               sh 'mvn -Dtest=TestGreeter#greetShouldIncludeGreetingPhrase2 test -pl server'
             }
 
