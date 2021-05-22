@@ -5,7 +5,7 @@ pipeline {
       parallel {
         stage('Build') {
           steps {
-            git(url: 'https://github.com/SabariSri/CI-CD-Pipeline.git', branch: 'blue_ocean', credentialsId: '34b78ab1-3895-4887-8e03-af7a26a8186a')
+            git(url: 'https://github.com/SabariSri/CI-CD-Pipeline.git', branch: 'blue_ocean', credentialsId: '34b78ab1-3895-4887-8e03-af7a26a8186a', poll: true)
           }
         }
 
@@ -69,12 +69,12 @@ pipeline {
 
       }
     }
-    
+
     stage('Deploy') {
-        steps {
-                deploy adapters: [tomcat9(credentialsId: 'c9d4b8ab-7ebf-456f-a634-bad11f78afaa', path: '', url: 'http://18.219.32.60:8090/')], contextPath: null, war: '**/*.war'            
-                }
-        }
-        
+      steps {
+        deploy(adapters: [tomcat9(credentialsId: 'c9d4b8ab-7ebf-456f-a634-bad11f78afaa', path: '', url: 'http://18.219.32.60:8090/')], war: '**/*.war')
+      }
+    }
+
   }
 }
