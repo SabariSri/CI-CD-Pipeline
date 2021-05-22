@@ -1,14 +1,14 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
-      steps {
-        git(url: 'https://github.com/SabariSri/CI-CD-Pipeline.git', branch: 'blue_ocean', credentialsId: '34b78ab1-3895-4887-8e03-af7a26a8186a')
-      }
-    }
-
-    stage('Stagging') {
+    stage('Build & Compile') {
       parallel {
+        stage('Build') {
+          steps {
+            git(url: 'https://github.com/SabariSri/CI-CD-Pipeline.git', branch: 'blue_ocean', credentialsId: '34b78ab1-3895-4887-8e03-af7a26a8186a')
+          }
+        }
+
         stage('Compile') {
           steps {
             withMaven(maven: 'maven3.8.1') {
@@ -18,22 +18,36 @@ pipeline {
           }
         }
 
-        stage('Test') {
-          environment {
-            maven = 'maven3.8.1'
-          }
+      }
+    }
+
+    stage('Tests') {
+      parallel {
+        stage('Unit Test') {
           steps {
-            sh 'mvn test'
+            withMaven(maven: 'maven3.8.1') {
+              sh 'mvn -Dtest=TestGreeter#greetShouldIncludeTheOneBeingGreeted test -pl server'
+            }
+
           }
         }
 
-        stage('Package') {
-          environment {
-            maven = 'maven3.8.1'
-          }
+        stage('Integration Test') {
           steps {
-            sh 'mvn package'
+            withMaven(maven: 'maven3.8.1') {
+              sh 'mvn test'
+            }
+
           }
+        }
+
+      }
+    }
+
+    stage('Package') {
+      steps {
+        withMaven(maven: 'maven3.8.1') {
+          sh 'mvn package'
         }
 
       }
@@ -41,13 +55,13 @@ pipeline {
 
     stage('Results') {
       parallel {
-        stage('Results') {
+        stage('Report') {
           steps {
             junit '**/*.xml'
           }
         }
 
-        stage('Archive') {
+        stage('Archive ') {
           steps {
             archiveArtifacts '**/*.war'
           }
