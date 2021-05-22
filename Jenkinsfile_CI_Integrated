@@ -24,17 +24,17 @@ pipeline {
     stage('Results') {
       steps {
         junit '**/*.xml'
-        archiveArtifacts artifacts: '**/*.war', followSymlinks: false
+        archiveArtifacts artifacts: 'webapp-4.0.war', followSymlinks: false
       }
     }
     stage('Nexus-Upload') {
       steps {
-        sh 'wget --user=admin --password=Flubber45! http://10.245.128.179:8081/repository/jenkins-ci-mvn-nexus-repo/com/company/webapp/4.0/webapp.war'
+        sh 'wget --user=admin --password=Flubber45! http://10.245.128.179:8081/repository/jenkins-ci-mvn-nexus-repo/com/company/webapp/4.0/webapp-4.0.war'
       }
     }
     stage('Deploy') {
       steps {
-        deploy adapters: [tomcat9(credentialsId: 'c9d4b8ab-7ebf-456f-a634-bad11f78afaa', path: '', url: 'http://18.219.32.60:8090/')], contextPath: null, war: 'webapp.war'
+        deploy adapters: [tomcat9(credentialsId: 'c9d4b8ab-7ebf-456f-a634-bad11f78afaa', path: '', url: 'http://18.219.32.60:8090/')], contextPath: null, war: 'webapp-4.0.war'
       }
     }
   }
