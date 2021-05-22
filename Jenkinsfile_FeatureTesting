@@ -20,9 +20,6 @@ pipeline {
 
       }
     }
-
-    stage('Tests') {
-      parallel {
         stage('Unit Test') {
           steps {
             withMaven(maven: 'maven3.8.1') {
@@ -32,18 +29,11 @@ pipeline {
 
           }
         }
-        
-      }
-    }
 
     stage('Results') {
-      parallel {
-        stage('Report') {
           steps {
             junit '**/*.xml'
           }
-        }
-
-        
+        }        
   }
 }
