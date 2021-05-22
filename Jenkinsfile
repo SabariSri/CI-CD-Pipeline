@@ -15,7 +15,6 @@ pipeline {
               sh 'mvn compile'
             }
 
-            sh 'mvn compile'
           }
         }
 
