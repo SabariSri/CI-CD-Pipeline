@@ -32,7 +32,7 @@ pipeline {
         nexusPublisher nexusInstanceId: 'nexus-on-epam-ubuntu', nexusRepositoryId: 'jenkins-ci-mvn-nexus-repo', packages: [
           [$class: 'MavenPackage', mavenAssetList: [
             [classifier: '', extension: '', filePath: 'webapp/target/webapp.war']
-          ], mavenCoordinate: [artifactId: 'webapp', groupId: 'com.company', packaging: 'war', version: '2.0']]
+          ], mavenCoordinate: [artifactId: 'webapp', groupId: 'com.company', packaging: 'war', version: '3.0']]
         ]
       }
     }
