@@ -11,8 +11,8 @@ pipeline {
       parallel {
         stage('Compile') {
           steps {
-            sh 'mvn compile'
             withMaven(maven: 'maven3.8.1')
+            sh 'mvn compile'
           }
         }
 
