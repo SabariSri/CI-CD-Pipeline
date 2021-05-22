@@ -32,18 +32,18 @@ pipeline {
         nexusPublisher nexusInstanceId: 'nexus-on-epam-ubuntu', nexusRepositoryId: 'jenkins-ci-mvn-nexus-repo', packages: [
           [$class: 'MavenPackage', mavenAssetList: [
             [classifier: '', extension: '', filePath: 'webapp/target/webapp.war']
-          ], mavenCoordinate: [artifactId: 'webapp', groupId: 'com.company', packaging: 'war', version: '4.0']]
+          ], mavenCoordinate: [artifactId: 'webapp', groupId: 'com.company', packaging: 'war', version: '4.1']]
         ]
       }
     }
     stage('Nexus-Download') {
       steps {
-        sh 'wget --user=admin --password=Flubber45! http://10.245.128.179:8081/repository/jenkins-ci-mvn-nexus-repo/com/company/webapp/4.0/webapp-4.0.war'
+        sh 'wget --user=admin --password=Flubber45! http://10.245.128.179:8081/repository/jenkins-ci-mvn-nexus-repo/com/company/webapp/4.1/webapp-4.1.war'
       }
     }
-    stage('Deploy') {
+    stage('Tomcat-Deploy') {
       steps {
-        deploy adapters: [tomcat9(credentialsId: 'c9d4b8ab-7ebf-456f-a634-bad11f78afaa', path: '', url: 'http://18.219.32.60:8090/')], contextPath: null, war: 'webapp-4.0.war'
+        deploy adapters: [tomcat9(credentialsId: 'c9d4b8ab-7ebf-456f-a634-bad11f78afaa', path: '', url: 'http://18.219.32.60:8090/')], contextPath: null, war: 'webapp-4.1.war'
       }
     }    
     stage('Slack-Notification') {
