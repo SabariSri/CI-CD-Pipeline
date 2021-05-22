@@ -29,7 +29,7 @@ pipeline {
         }
          stage('Deploy') {
             steps {
-                deploy adapters: [tomcat9(credentialsId: '78721f39-0953-49ef-844e-71543b04843c', path: '', url: 'http://3.19.14.45:8090/')], contextPath: null, war: '**/*.war'            }
+                deploy adapters: [tomcat9(credentialsId: 'c9d4b8ab-7ebf-456f-a634-bad11f78afaa', path: '', url: 'http://18.219.32.60:8090/')], contextPath: null, war: '**/*.war'            }
         }
     }    
 }
