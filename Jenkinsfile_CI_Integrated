@@ -24,7 +24,7 @@ pipeline {
     stage('Results') {
       steps {
         junit '**/*.xml'
-        archiveArtifacts artifacts: 'webapp-4.0.war', followSymlinks: false
+        archiveArtifacts artifacts: '**/*.war', followSymlinks: false
       }
     }
     stage('Nexus-Upload') {
