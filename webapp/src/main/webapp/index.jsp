@@ -12,5 +12,5 @@
 <h2> Created nexus uploader job separately and tested</h2>
 <h2> Completed configuring nexus binary upload along with tomcat deployment</h2>
 <h2> Integrated nexus and tomcat to deploy</h2>
-<h2> Created a job with warning next gen plugin</h2>
+<h2> Created a job with warning next gen plugin </h2>
 <h1> --------- All done --------- </h1>
