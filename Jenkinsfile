@@ -12,7 +12,7 @@ pipeline {
         stage('Compile') {
           steps {
             withMaven(maven: 'maven3.8.1') {
-              sh 'mvn compile'
+              bat 'mvn compile'
             }
 
           }
