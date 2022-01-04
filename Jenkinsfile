@@ -1,23 +1,9 @@
 pipeline {
   agent any
   stages {
-    stage('Build & Compile') {
-      parallel {
-        stage('Build') {
-          steps {
-            git(url: 'https://github.com/SabariSri/CI-CD-Pipeline.git', branch: 'blue_ocean', credentialsId: '34b78ab1-3895-4887-8e03-af7a26a8186a')
-          }
-        }
-
-        stage('Compile') {
-          steps {
-            withMaven(maven: 'maven3.8.1') {
-              bat 'mvn compile'
-            }
-
-          }
-        }
-
+    stage('Build') {
+      steps {
+        git(url: 'https://github.com/SabariSri/CI-CD-Pipeline.git', branch: 'blue_ocean', credentialsId: '34b78ab1-3895-4887-8e03-af7a26a8186a')
       }
     }
 
